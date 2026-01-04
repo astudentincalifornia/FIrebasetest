@@ -1,0 +1,44 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String!
+  photoUrl: String
+}
+
+type Website @table {
+  name: String!
+  createdAt: Timestamp!
+  published: Boolean!
+  user: User
+  description: String
+  publishedUrl: String
+  template: String
+}
+
+type Page @table {
+  title: String!
+  order: Int!
+  createdAt: Timestamp!
+  website: Website
+  content: String
+  slug: String
+}
+
+type Asset @table {
+  url: String!
+  filename: String!
+  mimeType: String!
+  createdAt: Timestamp!
+  user: User
+  page: Page
+  altText: String
+  websiteId: UUID
+}
+
+type AnalyticsData @table {
+  timestamp: Timestamp!
+  pageViews: Int!
+  uniqueVisitors: Int!
+  website: Website
+  referringSource: String
+}
